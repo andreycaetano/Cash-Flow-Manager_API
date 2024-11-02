@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: database
+      DB_NAME: cashFlowManager_DB
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: cashflowmanager
+    depends_on:
+      - database
+
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: cashFlowManager_DB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
