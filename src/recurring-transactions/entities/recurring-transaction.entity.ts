@@ -2,7 +2,6 @@ import { ExpenseCategory } from "src/expense-categories/entities/expense-categor
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 
 @Entity()
-@Unique(['transactionName', 'user', 'category'])
 export class RecurringTransaction {
     @PrimaryGeneratedColumn('uuid')
     id: string;

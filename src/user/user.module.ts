@@ -1,13 +1,13 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { UserPreferencesModule } from '../user-preferences/user-preferences.module';
-import { ExpenseCategoriesModule } from '../expense-categories/expense-categories.module';
-import { ExpensesModule } from '../expenses/expenses.module';
 import { BudgetsModule } from 'src/budgets/budgets.module';
 import { RecurringTransactionsModule } from 'src/recurring-transactions/recurring-transactions.module';
+import { ExpenseCategoriesModule } from '../expense-categories/expense-categories.module';
+import { ExpensesModule } from '../expenses/expenses.module';
+import { UserPreferencesModule } from '../user-preferences/user-preferences.module';
+import { User } from './entities/user.entity';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
 
 @Module({
   imports: [
@@ -19,7 +19,9 @@ import { RecurringTransactionsModule } from 'src/recurring-transactions/recurrin
     forwardRef(() => RecurringTransactionsModule)
   ],
   controllers: [UserController],
-  providers: [UserService],
+  providers: [
+    UserService,
+  ],
   exports: [UserService]
 })
 export class UserModule {}

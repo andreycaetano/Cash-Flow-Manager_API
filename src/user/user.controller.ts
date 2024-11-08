@@ -7,22 +7,24 @@ import { AuthGuard } from '@nestjs/passport';
 import { IsSelfGuard } from './guards/is-self.guard';
 import { ApiCreateUser, ApiFindAllUsers, ApiFindOneUser, ApiUpdateUser, ApiDeleteUser } from './decorators/swagger.decorator';
 import { ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from './guards/admin.guard';
 
 @ApiTags('User')
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    @Post()
+    @Post('register')
     @IsPublic()
     @ApiCreateUser()
-    create(@Body() createUserDto: CreateUserDto) {
+    create(@Body() createUserDto: CreateUserDto) {    
         return this.userService.create(createUserDto);
     }
 
     @Get()
     @IsPublic()
     @ApiFindAllUsers()
+    @UseGuards(AuthGuard('jwt'), AdminGuard)
     findAll() {
         return this.userService.findAll();
     }

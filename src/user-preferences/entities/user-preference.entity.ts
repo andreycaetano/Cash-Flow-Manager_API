@@ -10,10 +10,10 @@ export class UserPreference {
     @JoinColumn({ name: 'user_id'})
     user: User;
 
-    @Column({ name: 'default_currency', type: 'char' })
+    @Column({ name: 'default_currency', type: 'varchar', length: 5 })
     defaultCurrency: string;
 
-    @Column()
+    @Column({ type: 'varchar', length: 5})
     language: string;
 
     @CreateDateColumn({ name: 'created_at' })

@@ -20,15 +20,20 @@ export class AuthService {
             name: `${user.fName} ${user.lName}`,
             role: user.role
         };
-
-        return {
-            access_token: this.jwtService.sign(payload)
-        };
+      
+        try {
+            return {
+                access_token: this.jwtService.sign(payload)
+              };
+        } catch (error) {
+            console.log(error);
+        }
+        
     };
 
     async validateUser (email: string, password: string): Promise<User> {
         const user: User = await this.userService.findByEmail(email);
-
+        
         if (user) {
             const isPasswordValid = await bcrypt.compare(password, user.password);
 

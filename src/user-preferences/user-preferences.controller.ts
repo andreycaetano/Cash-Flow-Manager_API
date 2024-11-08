@@ -37,7 +37,7 @@ export class UserPreferencesController {
   @UseGuards(AuthGuard('jwt'), OwnershipGuard)
   @ApiPreference()
   findOne(@Param('id') id: string) {
-    return this.userPreferencesService.findOne(id);
+    return this.userPreferencesService.find(id);
   }
 
   @Patch(':id')

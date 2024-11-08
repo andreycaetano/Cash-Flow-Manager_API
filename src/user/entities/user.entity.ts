@@ -7,16 +7,16 @@ export class User {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ name: 'first_name', type: 'char', length: 50 })
+    @Column({ name: 'first_name', type: 'varchar', length: 50 })
     fName: string;
 
-    @Column({ name: 'last_name', type: 'char', length: 50 })
+    @Column({ name: 'last_name', type: 'varchar', length: 50 })
     lName: string;
 
-    @Column({ type: 'char', unique: true })
+    @Column({ type: 'varchar', length: 254, unique: true })
     email: string;
 
-    @Column({ type: 'char'})
+    @Column({ type: 'varchar', length: 255})
     password: string;
 
     @CreateDateColumn({ name: 'created_at' })

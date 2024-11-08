@@ -7,9 +7,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { LoginValidationMiddleware } from './middlewares/login-validation.middleware';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     UserModule,
     PassportModule,
     JwtModule.register({

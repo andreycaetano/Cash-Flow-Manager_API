@@ -22,7 +22,7 @@ export class IsSelfGuard implements CanActivate {
         };
 
         if (currentUser.id !== user.id) {
-            throw new ForbiddenException('You do not have permission to access or modify this user')
+            throw new ForbiddenException('You do not have the required permissions to access this user.')
         }
 
         return true

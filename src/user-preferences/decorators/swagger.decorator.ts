@@ -5,21 +5,21 @@ import { CreateUserPreferenceDto } from "../dto/create-user-preference.dto";
 
 export function ApiCreatePreference() {
     return applyDecorators(
+        ApiBearerAuth(),
+        ApiBody({ type: CreateUserPreferenceDto }),
         ApiResponse({
             status: 201,
             description: 'Successful response with user preferences',
             schema: {
-                example: {
-                    id: '123e4567-e89b-12d3-a456-426614174000',
-                    defaultCurrency: 'R$',
-                    language: 'pt-BR',
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
+                properties: {
+                    id: { type: 'string', example: '01603077-6e5f-4069-8588-c1e83b627f0c'},
+                    defaultCurrency: { type: 'string', example: 'R$' },
+                    lenguage: { type: 'string', example: 'pt-BR' },
+                    createdAt: { type: 'string', example: '2024-11-03T19:57:16.158Z'},
+                    updatedAt: { type: 'string', example: '2024-11-03T19:57:16.158Z'}
                 }
             }
         }),
-        ApiBody({ type: CreateUserPreferenceDto }),
-        ApiBearerAuth()
     )
 }
 
